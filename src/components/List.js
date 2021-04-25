@@ -1,12 +1,13 @@
-import { Fragment, useState } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
+
 import { itemActions } from '../store/items';
+
 import EditItem from './EditItem';
 import NormalItem from './NormalItem';
+
 const List = () => {
   let items = useSelector((state) => state.items);
-  let [editValue, setEditValue] = useState('');
-
   let dispatch = useDispatch();
 
   const removeItemHandler = (e) => {
@@ -19,22 +20,6 @@ const List = () => {
     dispatch(itemActions.setEditingMode(e.target.dataset.id));
   };
 
-  const editItemHandler = (e) => {
-    let id = e.target.dataset.id;
-
-    let editedItem = {
-      id,
-      content: editValue,
-    };
-
-    dispatch(itemActions.editItem(editedItem));
-    dispatch(itemActions.setEditingMode(e.target.dataset.id));
-  };
-
-  const editValueHandler = (e) => {
-    setEditValue(e.target.value);
-  };
-
   return (
     <div>
       {items.length > 0 && <hr className="bg-warning" />}
@@ -45,12 +30,7 @@ const List = () => {
             key={x.id}
           >
             {x.isEditing ? (
-              <EditItem
-                id={x.id}
-                content={x.content}
-                editValueHandler={editValueHandler}
-                editItemHandler={editItemHandler}
-              />
+              <EditItem id={x.id} content={x.content} />
             ) : (
               <NormalItem
                 id={x.id}
