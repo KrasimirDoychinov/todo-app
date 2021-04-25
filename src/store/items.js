@@ -1,7 +1,7 @@
-import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { configureStore, createSlice } from '@reduxjs/toolkit';
 
 let itemSlice = createSlice({
-  name: "items",
+  name: 'items',
   initialState: { items: [], totalCount: 0 },
   reducers: {
     addItem: (state, action) => {
@@ -25,8 +25,25 @@ let itemSlice = createSlice({
       return alert(`No item is found inside the arr`);
     },
     editItem: (state, action) => {
-      
-    }
+      let foundItem = state.items.find((x) => x.id == action.payload.id);
+
+      if (foundItem) {
+        foundItem.content = action.payload.content;
+        return;
+      }
+
+      return alert(`No item is found inside the arr`);
+    },
+    setEditingMode: (state, action) => {
+      let foundItem = state.items.find((x) => x.id == action.payload);
+
+      if (foundItem) {
+        foundItem.isEditing = true;
+        return;
+      }
+
+      return alert(`No item is found inside the arr`);
+    },
   },
 });
 

@@ -1,18 +1,18 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { itemActions } from "../store/items";
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { itemActions } from '../store/items';
 
 const Form = () => {
   let [content, setContent] = useState('');
+
   let dispatch = useDispatch();
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    
+
     if (!content.trim() != '') {
-      return alert('The content musn\'t be empty');
+      return alert("The content musn't be empty");
     }
-    
 
     dispatch(itemActions.addItem(content));
     setContent('');
@@ -20,7 +20,7 @@ const Form = () => {
 
   const onChangeHandler = (e) => {
     setContent(e.target.value);
-  } 
+  };
 
   return (
     <div className="pr-4 pl-4">

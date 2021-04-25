@@ -1,6 +1,5 @@
-import { useDispatch, useSelector } from "react-redux";
-import { itemActions } from "../store/items";
-
+import { useDispatch, useSelector } from 'react-redux';
+import { itemActions } from '../store/items';
 const List = () => {
   let items = useSelector((state) => state.items);
   let dispatch = useDispatch();
@@ -13,8 +12,7 @@ const List = () => {
 
   const editItemHandler = (e) => {
     let id = e.target.dataset.id;
-
-    
+    let item = dispatch(itemActions.setEditingMode(id));
   };
 
   return (
@@ -25,6 +23,9 @@ const List = () => {
             class="list-group-item bg-dark text-white border border-dark row"
             key={x.id}
           >
+            {x.isEditing && (
+              <input class="form-control col-md-9 mr-2" value={x.content} />
+            )}
             <i
               class="far fa-edit text-warning mr-1 pointer"
               onClick={editItemHandler}
