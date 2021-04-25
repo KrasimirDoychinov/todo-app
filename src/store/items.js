@@ -38,7 +38,7 @@ let itemSlice = createSlice({
       let foundItem = state.items.find((x) => x.id == action.payload);
 
       if (foundItem) {
-        foundItem.isEditing = true;
+        foundItem.isEditing = foundItem.isEditing ? false : true;
         return;
       }
 

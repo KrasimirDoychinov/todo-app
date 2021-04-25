@@ -7,7 +7,7 @@ function App() {
     <div>
       <Card>
         <Form />
-        <hr className="bg-warning"/>
+        
         <List />
       </Card>
     </div>

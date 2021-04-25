@@ -31,6 +31,7 @@ const Form = () => {
             placeholder="Todo..."
             onChange={onChangeHandler}
             value={content}
+            maxlength="40"
           />
           <button
             type="submit"
