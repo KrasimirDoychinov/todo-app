@@ -7,7 +7,6 @@ function App() {
     <div>
       <Card>
         <Form />
-        
         <List />
       </Card>
     </div>
