@@ -13,3 +13,8 @@ body {
   background-color: #3f3f3f;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
+
