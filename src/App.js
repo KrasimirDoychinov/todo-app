@@ -1,7 +1,15 @@
+import Card from "./components/Card";
+import Form from "./components/Form";
+import List from "./components/List";
+
 function App() {
   return (
     <div>
-      <h2>Let's get started!</h2>
+      <Card>
+        <Form />
+        <hr className="bg-warning"/>
+        <List />
+      </Card>
     </div>
   );
 }
