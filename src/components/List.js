@@ -1,6 +1,8 @@
 import { Fragment, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { itemActions } from '../store/items';
+import EditItem from './EditItem';
+import NormalItem from './NormalItem';
 const List = () => {
   let items = useSelector((state) => state.items);
   let [editValue, setEditValue] = useState('');
@@ -19,20 +21,19 @@ const List = () => {
 
   const editItemHandler = (e) => {
     let id = e.target.dataset.id;
-    
+
     let editedItem = {
       id,
-      content: editValue
-    }
+      content: editValue,
+    };
 
     dispatch(itemActions.editItem(editedItem));
     dispatch(itemActions.setEditingMode(e.target.dataset.id));
-  }
+  };
 
   const editValueHandler = (e) => {
     setEditValue(e.target.value);
-  }
-
+  };
 
   return (
     <div>
@@ -44,24 +45,19 @@ const List = () => {
             key={x.id}
           >
             {x.isEditing ? (
-              <div className="row align-items-center">
-                <i class="far fa-thumbs-up text-warning pointer" data-id={x.id} onClick={editItemHandler}></i>
-                <input class="form-control col-md-8 ml-2" placeholder={x.content} onChange={editValueHandler} maxLength="40"/>
-              </div>
+              <EditItem
+                id={x.id}
+                content={x.content}
+                editValueHandler={editValueHandler}
+                editItemHandler={editItemHandler}
+              />
             ) : (
-              <Fragment>
-                <i
-                  class="far fa-edit text-warning mr-1 pointer"
-                  onClick={setEditingModeHandler}
-                  data-id={x.id}
-                ></i>
-                <i
-                  class="far fa-times-circle pointer text-warning "
-                  onClick={removeItemHandler}
-                  data-id={x.id}
-                ></i>
-                <span className="ml-2 text-break">: {x.content}</span>
-              </Fragment>
+              <NormalItem
+                id={x.id}
+                content={x.content}
+                setEditingModeHandler={setEditingModeHandler}
+                removeItemHandler={removeItemHandler}
+              />
             )}
           </li>
         ))}
