@@ -31,12 +31,11 @@ const EditItem = (props) => {
         data-id={props.id}
         onClick={editItemHandler}
       ></i>
-      <input
+      <textarea
         class="form-control col-md-8 ml-2"
-        value={editValue}
         onChange={editValueHandler}
-        maxLength="40"
-      />
+        maxLength="150"
+      >{editValue}</textarea>
     </div>
   );
 };

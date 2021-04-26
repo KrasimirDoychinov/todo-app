@@ -22,13 +22,14 @@ const List = () => {
 
   const exportHandler = (e) => {
     e.preventDefault();
-    
+
     let txtContent = items.map((x, i) => `${++i}. ${x.content}\n`);
 
     let today = getTodaysDate();
     let blob = new Blob([txtContent.join('')], {
       type: 'text/plain;charset=utf-8',
     });
+
     saveAs(blob, `ToDo - ${today}.txt`);
   };
 
@@ -41,12 +42,12 @@ const List = () => {
     today = mm + '/' + dd + '/' + yyyy;
 
     return today;
-  }
+  };
 
   return (
     <div>
       {items.length > 0 && <hr className="bg-warning" />}
-      <ul class="list-group p-2">
+      <ul class="list-group px-1">
         {items.map((x) => (
           <li
             class="list-group-item bg-dark text-white border border-dark row align-items-center"
@@ -66,7 +67,7 @@ const List = () => {
         ))}
       </ul>
       {items.length > 0 && (
-        <div className="pr-5 pb-2 row justify-content-end">
+        <div className="pr-2 pb-2 row justify-content-end">
           <button
             className="btn btn-warning font-weight-bold"
             onClick={exportHandler}

@@ -23,19 +23,18 @@ const Form = () => {
   };
 
   return (
-    <div className="pr-4 pl-4">
-      <form className=" bg-dark p-2 rounded" onSubmit={onSubmitHandler}>
+    <div className="d-flex justify-content-center">
+      <form className="bg-dark p-2 rounded" onSubmit={onSubmitHandler}>
         <div className="row">
           <input
-            class="form-control col-md-9 mr-2"
             placeholder="Todo..."
             onChange={onChangeHandler}
             value={content}
-            maxlength="40"
+            maxlength="150"
           />
           <button
             type="submit"
-            class="btn btn-warning font-weight-bold col-md-2"
+            class="btn btn-warning font-weight-bold ml-1"
           >
             ADD
           </button>
