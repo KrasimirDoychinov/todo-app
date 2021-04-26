@@ -10,16 +10,7 @@ const List = () => {
   let items = useSelector((state) => state.items);
   let dispatch = useDispatch();
 
-  const removeItemHandler = (e) => {
-    let id = e.target.dataset.id;
-
-    dispatch(itemActions.removeItem(id));
-  };
-
-  const setEditingModeHandler = (e) => {
-    dispatch(itemActions.setEditingMode(e.target.dataset.id));
-  };
-
+  
   const exportHandler = (e) => {
     e.preventDefault();
 
@@ -47,6 +38,9 @@ const List = () => {
   return (
     <div>
       {items.length > 0 && <hr className="bg-warning" />}
+      {items.length == 0 && (
+        <div className="bg-dark box d-flex align-items-center text-light"></div>
+      )}
       <ul class="list-group px-1">
         {items.map((x) => (
           <li
@@ -59,8 +53,6 @@ const List = () => {
               <NormalItem
                 id={x.id}
                 content={x.content}
-                setEditingModeHandler={setEditingModeHandler}
-                removeItemHandler={removeItemHandler}
               />
             )}
           </li>

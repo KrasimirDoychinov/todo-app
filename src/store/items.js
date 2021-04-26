@@ -2,7 +2,14 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
 
 let itemSlice = createSlice({
   name: 'items',
-  initialState: { items: [], totalCount: 0 },
+  initialState: {
+    items: [
+      { content: 'Do the dishes', id: 1 },
+      { content: 'Take the dog for a walk', id: 2 },
+      { content: 'Buy some food', id: 3 },
+    ],
+    totalCount: 0,
+  },
   reducers: {
     addItem: (state, action) => {
       state.totalCount++;
