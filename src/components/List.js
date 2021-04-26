@@ -1,5 +1,5 @@
-
 import { useDispatch, useSelector } from 'react-redux';
+import { saveAs } from 'file-saver';
 
 import { itemActions } from '../store/items';
 
@@ -19,6 +19,29 @@ const List = () => {
   const setEditingModeHandler = (e) => {
     dispatch(itemActions.setEditingMode(e.target.dataset.id));
   };
+
+  const exportHandler = (e) => {
+    e.preventDefault();
+    
+    let txtContent = items.map((x, i) => `${++i}. ${x.content}\n`);
+
+    let today = getTodaysDate();
+    let blob = new Blob([txtContent.join('')], {
+      type: 'text/plain;charset=utf-8',
+    });
+    saveAs(blob, `ToDo - ${today}.txt`);
+  };
+
+  const getTodaysDate = () => {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+
+    today = mm + '/' + dd + '/' + yyyy;
+
+    return today;
+  }
 
   return (
     <div>
@@ -44,7 +67,12 @@ const List = () => {
       </ul>
       {items.length > 0 && (
         <div className="pr-5 pb-2 row justify-content-end">
-          <button className="btn btn-warning font-weight-bold ">EXPORT</button>
+          <button
+            className="btn btn-warning font-weight-bold"
+            onClick={exportHandler}
+          >
+            EXPORT
+          </button>
         </div>
       )}
     </div>

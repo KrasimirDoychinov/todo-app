@@ -21,7 +21,7 @@ const EditItem = (props) => {
 
   const editValueHandler = (e) => {
     setEditValue(e.target.value);
-  };
+  };             
 
   
   return (
